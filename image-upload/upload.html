@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片上传</title>
+	<style type="text/css">
+		ul,li {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		canvas {
+			display: none;
+		}
+		.upload_area {
+			width: 1149px;
+			height: 120px;
+			border: 1px solid #eceeeb;
+		}
+		.upload_area input[type="file"] {
+			width: 90px;
+			height: 90px;
+			opacity: 0;
+			cursor: pointer;
+		}
+		.button {
+			position: relative;
+			float: left;
+			width: 90px;
+			height: 90px;
+			margin :12px 20px;
+			background: white;
+			border: 1px solid #eceeeb;
+		}
+		.button div {
+			position: absolute;
+			width: 83px;
+			height: 82px;
+			background: url('public/images/upload_add.png');
+			margin: 3px 3px;			
+		}
+		.img_list {
+			float: left;
+			width: 1000px;
+			margin-top: 12px;
+		}
+		.img_list li {
+			position: relative;
+			float: left;
+			width: 90px;
+			height: 90px;
+			border: 1px solid #eceeeb;
+			margin-right: 20px;
+		}
+		.img_list img {
+			width: 83px;
+			height: 82px;
+			margin: 3px 3px;
+		}
+		.trash {
+			position: absolute;
+			width: 15px;
+			height: 15px;
+			display: none;
+			background: url('public/images/trash.gif');
+			bottom: 5px;
+    		right: 5px;
+    		cursor: pointer;
+		}
+		.qq-progress-bar {
+			position: absolute;
+		    display: block;
+		    background: #00abc7;
+		    width: 0%;
+		    height: 15px;
+		    border-radius: 6px;
+		    top: 20px;
+		    left: 3px;
+		}
+	</style>
+</head>
+<body>
+	<div class="upload_area">
+		<div class="button">
+			<div></div>
+			<input id="j-file" type="file" />
+		</div>	
+		<div class="img_list">
+			<ul id="small_pic_area">
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="public/js/jquery.js"></script>
+<script src="public/js/canvas.make-thumb.js"></script>
+<script>
+	var $file = $('#j-file');
+	var $status,
+		$li;
+	$file.makeThumb({
+		width: 372,
+		height: 230,
+		before: function() {
+			$li = $('<li><img src="" /><span class="trash"></span><div class="qq-progress-bar-selector qq-progress-bar"></div></li>');
+			$('#small_pic_area').append($li);
+			$status  = $('.qq-progress-bar-selector');
+			for(var i=10;i<90;i++){
+				i += 5;
+				$status.css('width',i+'%');
+			}
+		},
+		done: function(dataURL,blob,fileName,fEvt) { 
+			if(dataURL != undefined){
+				dataURI = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
+				$.ajax({
+					url: '/api/upload',
+                	data: 'img='+encodeURIComponent(dataURI)+'&type=small&file=small_'+fileName,
+                	type: 'POST',
+				}).done(function(data) {
+					//var $img = $('<li><img src="'+dataURL+'"><span class="trash"></span></li>');
+					//$('#small_pic_area').append($img);
+					$($li).find('img').attr('src',dataURL);
+					$('#small_pic_area li').mouseover(function(){
+						$(this).find('span').show();
+					})
+					.mouseout(function(){
+						$(this).find('span').hide();
+					});
+					$('.trash').click(function(){
+						$(this).parent().remove();	
+					});
+				});
+			}
+		},
+		fail: function(file, fEvt) { //error
+			console.log(file, fEvt);
+		},
+		always: function() {
+			$status.hide();
+		}
+	});
+
+</script>
+</html>

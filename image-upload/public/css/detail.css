@@ -1,0 +1,98 @@
+.tab-pane:after{
+	display: block;
+	clear: both;
+	content: '';
+}
+.left{
+	position: relative;
+	float: left;
+	width: 833px;
+	height: auto;
+	text-align: center;
+}
+.left img{
+	margin: 0 auto;
+}
+.right{
+	float: left;
+	width: 318px;
+	height: 460px;
+	background: #f4f4f4;
+}
+.right .name{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	height: 60px;
+}
+.name img{
+	float: left;
+}
+.name_ae{
+	float: left;
+	width: 180px;
+	margin-left: 18px;
+    margin-top: 5px;
+}
+.name_ae h4{
+	font-size: 16px;
+	line-height: 20px;
+}
+.buyer{
+	background: #f68c24;
+	color: white;
+	font-size: 12px;
+}
+.content-info{
+	margin: 10px;
+	margin-left: 20px;
+}
+.content-info h5{
+	font-size: 16px;
+}
+.content-info h5:before{
+	content: '.';
+	display: block;
+	float: left;
+	width: 3px;
+	height: 20px;
+	background: red;
+	margin-right: 8px;
+	text-indent: 1000px;
+}
+.content-info p{
+	padding-top: 10px;
+}
+.content-info table{
+	margin-top: 20px;
+}
+.content-info table tr{
+	height: 30px;
+}
+.content-info table th{
+	text-align: left;
+}
+.download{
+	margin-left: 20px;
+    margin-top: 5px;
+}
+.last{
+	position: absolute;
+	display: block;
+	top: 40%;
+	width: 44px;
+	height: 48px;
+	background: url(../images/arrow.png) 0 0;
+	text-indent: -1000px;
+}
+.next{
+	position: absolute;
+	display: block;
+	right: 0;
+	top: 40%;
+	width: 44px;
+	height: 48px;
+	background: url(../images/arrow.png) -75px 0;
+	text-indent: -5000px;
+}

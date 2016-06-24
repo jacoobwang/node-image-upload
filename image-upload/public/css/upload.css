@@ -1,0 +1,29 @@
+h3 {
+	font-size: 20px;
+	margin-bottom: 15px;
+}
+p {
+	height: 60px;
+	line-height: 60px;
+}
+label {
+	display: inline-block;
+	width: 78px;
+	height: 36px;
+	line-height: 36px;
+}
+input {
+	height: 36px;
+	border: 1px solid #eee;
+	font-size: 16px;
+	text-indent: 3px;
+}
+input[type="radio"] {
+	vertical-align: middle;
+	cursor: pointer;
+}
+p em {
+	font-style: normal;
+	color: red;
+	padding-right: 3px;
+}
