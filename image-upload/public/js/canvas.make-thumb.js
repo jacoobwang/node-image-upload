@@ -5,7 +5,7 @@ fill: 图片小于缩略图尺寸时, 是否填充(false: 缩略图宽高自动�
 stretch: 小图是否强制拉伸以适应缩略图的尺寸(size = auto/contain时)
 注意: 添加图片水印不能使用跨域的图片
 最好在 http开头的地址 下测试
-http://localhost:8080/leon/html5-make-thumb/index.html
+http://localhost:8080/create
 */
 
 (function(window, $, undefined) {
